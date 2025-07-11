@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - app_data:/app
+    working_dir: /app
+    command: php cli.php
+    tty: true 
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - app_data:/app
+    working_dir: /app
+    command: vendor/bin/phpunit
+    tty: true
+
+volumes:
+  app_data:    
